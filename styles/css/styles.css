@@ -127,7 +127,8 @@ main > *:nth-child(9) {
 .listOfElements li {
   width: 100%;
   margin-top: 10px;
-  padding: 25px 0;
+  padding: 0 margin 0;
+  padding: 15px 0;
   color: white;
   list-style: none;
   background-color: #7a35ae;
@@ -137,8 +138,101 @@ main > *:nth-child(9) {
 }
 
 #loading {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
   width: 40px;
   height: 40px;
   background: rgb(237, 255, 0);
   background: radial-gradient(circle, rgb(237, 255, 0) 0%, rgb(255, 202, 115) 35%, rgb(0, 82, 255) 100%);
+  z-index: 9;
+}
+@-webkit-keyframes rotateAnimation {
+  from {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+@keyframes rotateAnimation {
+  from {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+.liElementofList {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 0.25fr 1fr 0.1fr;
+  grid-template-columns: 0.25fr 1fr 0.1fr;
+  -ms-grid-rows: 1fr 0.2fr;
+  grid-template-rows: 1fr 0.2fr;
+}
+
+.liElementofList > *:nth-child(1) {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+}
+
+.liElementofList > *:nth-child(2) {
+  -ms-grid-row: 1;
+  -ms-grid-column: 2;
+}
+
+.liElementofList > *:nth-child(3) {
+  -ms-grid-row: 1;
+  -ms-grid-column: 3;
+}
+
+.liElementofList > *:nth-child(4) {
+  -ms-grid-row: 2;
+  -ms-grid-column: 1;
+}
+
+.liElementofList > *:nth-child(5) {
+  -ms-grid-row: 2;
+  -ms-grid-column: 2;
+}
+
+.liElementofList > *:nth-child(6) {
+  -ms-grid-row: 2;
+  -ms-grid-column: 3;
+}
+.liElementofList .nameOfRep {
+  -ms-grid-column: 2;
+  grid-column: 2;
+  -ms-grid-row: 1;
+  grid-row: 1;
+}
+.liElementofList .authorsImg {
+  -ms-grid-column: 1;
+  grid-column: 1;
+  -ms-grid-row: 1;
+  grid-row: 1;
+  width: 60px;
+  height: 60px;
+  border-radius: 40px;
+  margin: 12px;
+  -ms-grid-column-align: center;
+      justify-self: center;
+}
+.liElementofList .authorName {
+  -ms-grid-column: 1;
+  grid-column: 1;
+  -ms-grid-row: 2;
+  grid-row: 2;
+  -ms-grid-column-align: center;
+      justify-self: center;
+  margin: 0;
+  padding: 0;
+  font-size: 12px;
 }
