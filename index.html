@@ -8,16 +8,25 @@
     <link rel="stylesheet" href="./styles/css/styles.css">
 </head>
 <body>
+    <div class="navContainer">
+        <nav>
+            <div class="dropdown-container">
+                <div role="button" tabindex="0" class="dropdown-content-language" id="dropdownButton">
+                    <div id="insideDropDwn" class="insideDropDwn"></div>
+                        <img id="imgOfDropDwn" src="images/arrowRight.png" alt="arrowDown">
+                </div>
+            </div>
+        </nav>
+    </div>
     <main>
         <div class="searchBlock">
             <input id="textField" type="text" placeholder="Enter the name of repository...">
             <button id="sendButton">Enter</button>
         </div>
-
         <ul class="listOfElements" id="listOfElements"></ul>
         <div id="loading"></div>
         <div id="indexOfPage"></div>
     </main>
     <script type="module" src="/scripts/scripts.js"></script>
-</body>
+   
 </html>
