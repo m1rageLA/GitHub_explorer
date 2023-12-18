@@ -5,13 +5,14 @@ const idOfPage = document.getElementById('indexOfPage');
 const frozenNavContainer = document.querySelector('.navContainer');
 
 const currentPage = 1;
-const perPage = 30;
-let language = "Python";
+const perPage = 500;
+let language = "all";
 
 const url = 'https://api.github.com/search/repositories?q=';
 
 function createListElement(data) {
-  for (const i in data.items) {
+  
+  function createList(i){
     console.log(data.items[i].name);
     const liElement = document.createElement('li');
     const nameOfRep = document.createElement('h3');
@@ -31,11 +32,17 @@ function createListElement(data) {
     liElement.appendChild(nameOfRep);
     liElement.appendChild(author);
     listOfElements.appendChild(liElement);
-/*
-    frozenNavContainer.style.position = 'sticky';
-    frozenNavContainer.style.top = '0';
-    frozenNavContainer.style.margin = '80px';
-    */
+    console.log(`----------------${language}---------------------`);
+  }
+
+  for (const i in data.items) {
+    if (data.items[i].language === language) {
+      createList(i)
+    }
+    else if (language === "all") {
+      console.log("----------------DEFAULT---------------------");
+      createList(i);
+    }
   }
 }
 
@@ -44,7 +51,7 @@ async function getData(url, repos, page) {
     console.log(language);
     loading.style.display = `block`;
     loading.style.animation = `rotateAnimation 1s infinite`;
-    const response = await fetch(`${url}${repos}/?q=m1rageLA+language:${language}&page=${page}&per_page=${perPage}`);
+    const response = await fetch(`${url}${repos}/&page=${page}&per_page=${perPage}&language=${language}`);
     console.log(response);
     const data = await response.json();
     setTimeout(() => {
@@ -64,16 +71,23 @@ const setupDropdown = () => {
   let isOpen = false;
   let originalHeight;
   const languages = [
-    "JavaScript", "Python", "Java", "C#", "C++", "TypeScript", "Ruby", "Swift", "PHP", "Go",
+    "all", "JavaScript", "Python", "Java", "C#", "C++", "TypeScript", "Ruby", "Swift", "PHP", "Go",
     "Kotlin", "R", "Objective-C", "Shell", "MATLAB", "Rust", "Dart", "Scala", "Lua", "Perl",
   ]
   const dropdownButton = document.getElementById('dropdownButton');
   const dropdownBlock = document.getElementById('insideDropDwn');
+  let nameOfLanguage = document.createElement('p');
   for (const i of languages) {
     const a = document.createElement('a');
     dropdownBlock.appendChild(a);
     a.textContent = i;
-    a.addEventListener('click', () => language = i);
+    a.addEventListener('click', () => {
+      language = i;
+      dropdownButton.nameOfLanguage = '';
+      nameOfLanguage.style.position = 'absolute';
+      nameOfLanguage.textContent = language;
+      dropdownButton.appendChild(nameOfLanguage);
+    });
   }
   const dropdownButtonFunct = () => {
     const currentHeight = dropdownButton.offsetHeight;
